@@ -10,11 +10,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.google.android.gms.location.*
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-private const val UPDATE_INTERVAL_IN_MILLISECONDS = 15_000L
-private const val FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 15_000L
+class LocationObserver @Inject constructor(@ApplicationContext private val context: Context) : LifecycleObserver {
 
-class LocationObserver(private val context: Context) : LifecycleObserver {
+    companion object {
+        private const val UPDATE_INTERVAL_IN_MILLISECONDS = 15_000L
+        private const val FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 15_000L
+    }
 
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private lateinit var mLocation: Location

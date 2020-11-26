@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+
 }
 
 android {
@@ -43,6 +46,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation project(':domain')
+    implementation project(':data')
+    implementation project(':local')
+
     // Dexter Permission library
     implementation 'com.karumi:dexter:6.2.1'
 
@@ -54,4 +61,8 @@ dependencies {
 
     // location services
     implementation 'com.google.android.gms:play-services-location:17.1.0'
+
+    // hilt dependency
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 }

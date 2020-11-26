@@ -5,8 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.tobidaada.a4cast.observers.LocationObserver
 import com.tobidaada.a4cast.utils.requestUserPermission
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    @Inject lateinit var locationObserver: LocationObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         requestUserPermission(permissions) {
             // start listening for location updates
-            lifecycle.addObserver(LocationObserver(this))
+            lifecycle.addObserver(locationObserver)
         }
     }
 }

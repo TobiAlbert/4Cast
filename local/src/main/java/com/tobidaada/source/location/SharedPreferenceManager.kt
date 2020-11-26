@@ -2,8 +2,10 @@ package com.tobidaada.source.location
 
 import android.content.Context
 import android.content.SharedPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class SharedPreferenceManager(private val context: Context) {
+class SharedPreferenceManager @Inject constructor(@ApplicationContext private val context: Context) {
 
     companion object {
         private const val SHARED_PREF_NAME = "com.tobidaada_shared_pref"
