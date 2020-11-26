@@ -45,4 +45,13 @@ dependencies {
 
     // Dexter Permission library
     implementation 'com.karumi:dexter:6.2.1'
+
+    // lifecycle
+    def lifecycle_version = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+
+    // location services
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
 }

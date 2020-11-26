@@ -3,6 +3,7 @@ package com.tobidaada.a4cast
 import android.Manifest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.tobidaada.a4cast.observers.LocationObserver
 import com.tobidaada.a4cast.utils.requestUserPermission
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         requestUserPermission(permissions) {
             // start listening for location updates
-            // adding lifecycle observer to handle location stuff
+            lifecycle.addObserver(LocationObserver(this))
         }
     }
 }
