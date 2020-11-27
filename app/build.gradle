@@ -92,4 +92,8 @@ dependencies {
 
     // kotlin fragment extensions
     implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+    // room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 }
