@@ -20,7 +20,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
         getSharedPrefs().edit()
 
     fun saveDouble(key: String, value: Double) {
-        getEditor().putFloat(key, value.toFloat())
+        getEditor().putFloat(key, value.toFloat()).commit()
     }
 
     fun getDouble(key: String, defaultValue: Double = 0.0) =

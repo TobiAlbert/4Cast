@@ -10,10 +10,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.google.android.gms.location.*
+import com.tobidaada.domain.usecases.location.SaveUserLocation
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class LocationObserver @Inject constructor(@ApplicationContext private val context: Context) : LifecycleObserver {
+class LocationObserver @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val saveUserLocation: SaveUserLocation
+) : LifecycleObserver {
 
     companion object {
         private const val UPDATE_INTERVAL_IN_MILLISECONDS = 15_000L
@@ -30,6 +34,8 @@ class LocationObserver @Inject constructor(@ApplicationContext private val conte
             result ?: return
 
             mLocation = result.lastLocation
+
+            saveUserLocation(mLocation.latitude, mLocation.longitude)
         }
     }
 
@@ -44,7 +50,10 @@ class LocationObserver @Inject constructor(@ApplicationContext private val conte
                 .addOnSuccessListener {
                     // update location only if response is not null
                     // and location has not already been updated.
-                    if (it != null && !::mLocation.isInitialized) mLocation = it
+                    if (it != null && !::mLocation.isInitialized) {
+                        mLocation = it
+                        saveUserLocation(mLocation.latitude, mLocation.longitude)
+                    }
             }
         }
         mFusedLocationClient.requestLocationUpdates(createLocationRequest(), mLocationCallback, Looper.getMainLooper())

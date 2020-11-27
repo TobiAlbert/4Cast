@@ -4,10 +4,12 @@ import android.content.Context
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.tobidaada.a4cast.BuildConfig
 import com.tobidaada.data.models.WeatherData
+import com.tobidaada.data.repository.weather.WeatherRemoteDataSource
 import com.tobidaada.remote.mapper.Mapper
 import com.tobidaada.remote.mapper.WeatherDataRemoteMapper
 import com.tobidaada.remote.models.WeatherResponse
 import com.tobidaada.remote.services.WeatherService
+import com.tobidaada.remote.source.WeatherRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -79,4 +81,9 @@ abstract class RemoteModuleBinds {
     abstract fun bindsWeatherRemoteMapper(
         weatherDataRemoteMapper: WeatherDataRemoteMapper
     ): Mapper<WeatherData, WeatherResponse>
+
+    @Binds
+    abstract fun bindsWeatherRemoteDataSourceImpl(
+        weatherRemoteDataSourceImpl: WeatherRemoteDataSourceImpl
+    ): WeatherRemoteDataSource
 }

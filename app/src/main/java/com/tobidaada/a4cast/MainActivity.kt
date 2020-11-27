@@ -2,6 +2,7 @@ package com.tobidaada.a4cast
 
 import android.Manifest
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.tobidaada.a4cast.observers.LocationObserver
 import com.tobidaada.a4cast.utils.requestUserPermission
@@ -11,6 +12,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject lateinit var locationObserver: LocationObserver
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         requestUserPermission(permissions) {
             // start listening for location updates
             lifecycle.addObserver(locationObserver)
+            mainViewModel.getWeather()
         }
     }
 }
