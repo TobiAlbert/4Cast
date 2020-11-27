@@ -1,9 +1,7 @@
 package com.tobidaada.data.repository.weather
 
-import com.tobidaada.data.models.CurrentWeatherData
-import com.tobidaada.data.models.ForecastData
+import com.tobidaada.data.models.WeatherData
 
 interface WeatherRemoteDataSource {
-    suspend fun getCurrentWeather(): CurrentWeatherData
-    suspend fun getWeeklyForecast(): List<ForecastData>
+    suspend fun getWeather(latitude: Double, longitude: Double): WeatherData
 }

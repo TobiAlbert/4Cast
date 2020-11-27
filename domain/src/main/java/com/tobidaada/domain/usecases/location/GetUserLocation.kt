@@ -6,7 +6,5 @@ import javax.inject.Inject
 
 class GetUserLocation @Inject constructor(private val locationRepository: LocationRepository) {
 
-    operator fun invoke(): LocationEntity {
-        return locationRepository.getLocation()
-    }
+    operator fun invoke(): LocationEntity = locationRepository.getLocation()
 }

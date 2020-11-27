@@ -1,0 +1,6 @@
+ext {
+    javaInjectVersion = '1'
+    rxjava = "2.2.6"
+    rxAndroid = "2.1.1"
+    retrofit = "2.6.2"
+}

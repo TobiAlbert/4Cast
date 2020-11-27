@@ -17,20 +17,25 @@ class WeatherRepositoryImpl @Inject constructor(
     private val forecastWeatherMapper: Mapper<ForecastEntity, ForecastData>
 ) : WeatherRepository {
 
-    override suspend fun getCurrentWeather(): CurrentWeatherEntity {
+    override suspend fun getCurrentWeather(latitude: Double, longitude: Double): CurrentWeatherEntity {
         val currentWeather = localDataSource.getCurrentWeather()
         if (currentWeather != null) {
-            val hasExpired = (System.currentTimeMillis() - currentWeather.time) > CACHE_EXPIRATION
+            val currentTime = System.currentTimeMillis()
+            val createdAt = currentWeather.dateTime
+            val hasExpired =
+                ((currentTime - createdAt) > CACHE_EXPIRATION) || !isSameDay(currentTime, createdAt)
             if (!hasExpired) {
                 return currentWeatherMapper.from(currentWeather)
             }
         }
 
         // fetch from remote data source, and save.
-        return currentWeatherMapper.from(remoteDataSource.getCurrentWeather()).also { saveCurrentWeather(it) }
+        val weatherData = remoteDataSource.getWeather(latitude, longitude)
+        saveWeeklyForecast(weatherData.forecastData.map { forecastWeatherMapper.from(it) })
+        return currentWeatherMapper.from(weatherData.currentWeatherData).also { saveCurrentWeather(it) }
     }
 
-    override suspend fun getWeeklyForecast(): List<ForecastEntity> {
+    override suspend fun getWeeklyForecast(latitude: Double, longitude: Double): List<ForecastEntity> {
         val currentForecast = localDataSource.getWeeklyForecast()
 
         if (currentForecast.isNotEmpty()) {
@@ -46,9 +51,9 @@ class WeatherRepositoryImpl @Inject constructor(
             }
         }
 
-        return remoteDataSource.getWeeklyForecast()
-            .map { forecastWeatherMapper.from(it) }
-            .also { saveWeeklyForecast(it) }
+        val weatherData = remoteDataSource.getWeather(latitude, longitude)
+        saveCurrentWeather(currentWeatherMapper.from(weatherData.currentWeatherData))
+        return weatherData.forecastData.map { forecastWeatherMapper.from(it) }.also { saveWeeklyForecast(it) }
     }
 
     override suspend fun saveCurrentWeather(weather: CurrentWeatherEntity) {

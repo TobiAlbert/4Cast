@@ -7,9 +7,9 @@ import javax.inject.Inject
 class CurrentWeatherDomainDataMapper @Inject constructor(): Mapper<CurrentWeatherEntity, CurrentWeatherData> {
     override fun from(e: CurrentWeatherData): CurrentWeatherEntity =
         CurrentWeatherEntity(
-            time = e.time,
-            sunriseTime = e.sunriseTime,
-            sunsetTime = e.sunsetTime,
+            time = e.dateTime,
+            timezoneOffset = e.timezoneOffset,
+            timezone = e.timezone,
             temperature = e.temperature,
             feelsLikeTemperature = e.feelsLikeTemperature,
             humidity = e.humidity,
@@ -21,9 +21,9 @@ class CurrentWeatherDomainDataMapper @Inject constructor(): Mapper<CurrentWeathe
 
     override fun to(t: CurrentWeatherEntity): CurrentWeatherData =
         CurrentWeatherData(
-            time = t.time,
-            sunriseTime = t.sunriseTime,
-            sunsetTime = t.sunsetTime,
+            dateTime = t.time,
+            timezoneOffset = t.timezoneOffset,
+            timezone = t.timezone,
             temperature = t.temperature,
             feelsLikeTemperature = t.feelsLikeTemperature,
             humidity = t.humidity,
