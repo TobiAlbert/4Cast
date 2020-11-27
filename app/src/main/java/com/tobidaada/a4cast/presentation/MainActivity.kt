@@ -2,6 +2,7 @@ package com.tobidaada.a4cast.presentation
 
 import android.Manifest
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -39,6 +40,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         requestLocationPermission()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return when {
+            menu != null -> {
+                menuInflater.inflate(R.menu.toolbar_menu, menu)
+                true
+            }
+            else -> super.onCreateOptionsMenu(menu)
+        }
     }
 
     private fun requestLocationPermission() {
