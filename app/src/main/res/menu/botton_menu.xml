@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_today"
+        android:title="@string/today"
+        android:icon="@drawable/ic_calendar_today"/>
+
+    <item
+        android:id="@+id/action_weekly"
+        android:title="@string/weekly"
+        android:orderInCategory="200"
+        android:icon="@drawable/ic_calendar_weekly"/>
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/share"
+        android:orderInCategory="300"
+        android:icon="@drawable/ic_share"/>
+</menu>

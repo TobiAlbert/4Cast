@@ -14,7 +14,7 @@
         android:name=".App"
         android:supportsRtl="true"
         android:theme="@style/Theme.4Cast">
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

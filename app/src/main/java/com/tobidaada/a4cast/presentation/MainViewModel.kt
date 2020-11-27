@@ -1,4 +1,4 @@
-package com.tobidaada.a4cast
+package com.tobidaada.a4cast.presentation
 
 import android.util.Log
 import androidx.hilt.Assisted

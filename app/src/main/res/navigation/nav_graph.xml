@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todayWeatherFragment">
+
+    <fragment
+        android:id="@+id/todayWeatherFragment"
+        android:name="com.tobidaada.a4cast.presentation.fragments.TodayWeatherFragment"
+        android:label="fragment_today_weather"
+        tools:layout="@layout/fragment_today_weather" >
+        <action
+            android:id="@+id/action_todayWeatherFragment_to_weeklyWeatherFragment"
+            app:destination="@id/weeklyWeatherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklyWeatherFragment"
+        android:name="com.tobidaada.a4cast.presentation.fragments.WeeklyWeatherFragment"
+        android:label="fragment_weekly_weather"
+        tools:layout="@layout/fragment_weekly_weather" />
+</navigation>

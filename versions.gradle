@@ -4,4 +4,5 @@ ext {
     rxAndroid = "2.1.1"
     retrofit = "2.6.2"
     roomVersion = "2.2.5"
+    jetpackNavigation = "2.3.1"
 }
