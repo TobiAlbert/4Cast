@@ -4,4 +4,7 @@
     <string name="weekly">Weekly</string>
     <string name="share">Share</string>
     <string name="search">Search</string>
+
+    <string name="wind_speed">%s km/h</string>
+    <string name="temperature">%s℃</string>
 </resources>

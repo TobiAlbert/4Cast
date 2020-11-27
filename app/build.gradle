@@ -91,6 +91,9 @@ dependencies {
     // kotlin viewmodel extensions
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
+    // kotlin live-data extension
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+
     // kotlin fragment extensions
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 

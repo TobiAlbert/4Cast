@@ -2,8 +2,6 @@ package com.tobidaada.a4cast.presentation
 
 import android.Manifest
 import android.os.Bundle
-import android.view.Menu
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,7 +15,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject lateinit var locationObserver: LocationObserver
-    private val mainViewModel: MainViewModel by viewModels()
 
     private lateinit var mNavController: NavController
     private val mBottomNavListener = BottomNavigationView.OnNavigationItemSelectedListener {
@@ -42,16 +39,6 @@ class MainActivity : AppCompatActivity() {
         requestLocationPermission()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return when {
-            menu != null -> {
-                menuInflater.inflate(R.menu.toolbar_menu, menu)
-                true
-            }
-            else -> super.onCreateOptionsMenu(menu)
-        }
-    }
-
     private fun requestLocationPermission() {
         val permissions = listOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -62,13 +49,13 @@ class MainActivity : AppCompatActivity() {
             // start listening for location updates
             lifecycle.addObserver(locationObserver)
             setupUi()
-            mainViewModel.getWeather()
         }
     }
 
     private fun setupUi() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         mNavController = navHostFragment.navController
+
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.setOnNavigationItemSelectedListener(mBottomNavListener)
     }

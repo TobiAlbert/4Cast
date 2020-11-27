@@ -9,11 +9,7 @@
         android:id="@+id/todayWeatherFragment"
         android:name="com.tobidaada.a4cast.presentation.fragments.TodayWeatherFragment"
         android:label="fragment_today_weather"
-        tools:layout="@layout/fragment_today_weather" >
-        <action
-            android:id="@+id/action_todayWeatherFragment_to_weeklyWeatherFragment"
-            app:destination="@id/weeklyWeatherFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_today_weather" />
     <fragment
         android:id="@+id/weeklyWeatherFragment"
         android:name="com.tobidaada.a4cast.presentation.fragments.WeeklyWeatherFragment"

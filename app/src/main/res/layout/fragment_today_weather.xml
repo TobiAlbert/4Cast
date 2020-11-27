@@ -1,13 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".presentation.fragments.TodayWeatherFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Today's Weather" />
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:background="@drawable/background_today_forcast"
+        android:padding="16dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textSize="25sp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:textColor="@color/white"
+            tools:text="New Delhi"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:layout_below="@+id/city"
+            android:layout_alignStart="@+id/city"
+            tools:text="Friday June 30"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_below="@+id/date"
+            android:layout_alignStart="@+id/date"
+            tools:text="Light rain"/>
+
+        <TextView
+            android:id="@+id/currentTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginBottom="24dp"
+            android:textSize="56sp"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            tools:text="14 C"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <ImageView
+                android:id="@+id/ic_temperature"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/ic_temperature"/>
+
+            <TextView
+                android:id="@+id/feelsLikeLabel"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/ic_temperature"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                android:text="Feels Like"
+                android:fontFamily="sans-serif-light"
+                tools:text="Feels Like"/>
+
+            <TextView
+                android:id="@+id/feelsLikeTemp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/feelsLikeLabel"
+                android:layout_alignStart="@+id/feelsLikeLabel"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                tools:text="22 C" />
+
+            <TextView
+                android:id="@+id/humidityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                android:text="Humidity"
+                android:fontFamily="sans-serif-light"
+                tools:text="Humidity"/>
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/humidityLabel"
+                android:layout_below="@id/humidityLabel"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                tools:text="94%"/>
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_toStartOf="@+id/humidityLabel"
+                app:srcCompat="@drawable/ic_rain"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <ImageView
+                android:id="@+id/ic_wind"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/ic_wind"/>
+
+            <TextView
+                android:id="@+id/windLabel"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/ic_wind"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                android:text="Wind"
+                android:fontFamily="sans-serif-light"
+                tools:text="Wind"/>
+
+            <TextView
+                android:id="@+id/windSpeed"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/windLabel"
+                android:layout_alignStart="@+id/windLabel"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                tools:text="13 km/h" />
+
+            <TextView
+                android:id="@+id/uvIndexLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                android:text="UV Index"
+                android:fontFamily="sans-serif-light"
+                tools:text="UV Index"/>
+
+            <TextView
+                android:id="@+id/uvIndex"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/uvIndexLabel"
+                android:layout_below="@id/uvIndexLabel"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                tools:text="7"/>
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_toStartOf="@+id/uvIndexLabel"
+                app:srcCompat="@drawable/ic_sunlight"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
