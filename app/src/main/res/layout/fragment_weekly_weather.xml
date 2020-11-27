@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:orientation="vertical"
     tools:context=".presentation.fragments.WeeklyWeatherFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Weekly Weather" />
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="4"
+       android:background="#203354"
+       android:padding="16dp">
+       <TextView
+           android:id="@+id/city"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:fontFamily="sans-serif-light"
+           android:textSize="25sp"
+           android:layout_marginTop="?attr/actionBarSize"
+           android:textColor="@color/white"
+           tools:text="New Delhi"/>
 
-</FrameLayout>
+       <TextView
+           android:id="@+id/date"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:fontFamily="sans-serif-light"
+           android:textSize="12sp"
+           android:textColor="@color/white"
+           android:layout_below="@+id/city"
+           android:layout_alignStart="@+id/city"
+           tools:text="Friday June 30"/>
+
+       <TextView
+           android:id="@+id/description"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="48dp"
+           android:textColor="@color/white"
+           android:fontFamily="sans-serif-condensed-medium"
+           android:layout_below="@+id/date"
+           android:layout_alignStart="@+id/date"
+           tools:text="Light rain"/>
+
+       <TextView
+           android:id="@+id/currentTemperature"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:fontFamily="sans-serif-light"
+           android:textSize="56sp"
+           android:textColor="@color/white"
+           android:layout_alignParentBottom="true"
+           tools:text="14 C"/>
+   </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forecastRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+</LinearLayout>

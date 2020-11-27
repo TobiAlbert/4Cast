@@ -11,9 +11,9 @@ import com.tobidaada.a4cast.R
 import com.tobidaada.a4cast.presentation.MainViewModel
 import com.tobidaada.a4cast.presentation.models.CurrentWeather
 import com.tobidaada.a4cast.presentation.models.Status
+import com.tobidaada.a4cast.utils.formatDateFromUnixTime
+import com.tobidaada.a4cast.utils.getCityFromTimezone
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
 class TodayWeatherFragment : Fragment(R.layout.fragment_today_weather) {
@@ -56,19 +56,11 @@ class TodayWeatherFragment : Fragment(R.layout.fragment_today_weather) {
                 Status.SUCCESS -> {
                     val currentWeather = it.data as CurrentWeather
 
-                    // city
-                    val cityArray = currentWeather.timezone.split("/")
-                    val city = if (cityArray.size > 1) cityArray[1].replace("_", " ")
-                               else currentWeather.timezone
-
                     // date
-                    val epochTime = (currentWeather.time + currentWeather.timezoneOffset.toLong()) * 1000
-                    val date = Date(epochTime)
-                    val formatter = SimpleDateFormat("EEEE MMMM dd", Locale.getDefault())
-                    val output = formatter.format(date)
+                    val date = formatDateFromUnixTime(currentWeather.time + currentWeather.timezoneOffset.toLong())
 
-                    mCityTv.text = city
-                    mDateTv.text = output.toString()
+                    mCityTv.text = getCityFromTimezone(currentWeather.timezone)
+                    mDateTv.text = date
                     mDescriptionTv.text = currentWeather.description
                     mCurrentTemperatureTv.text = getString(R.string.temperature, currentWeather.temperature.toString())
                     mFeelsLikeTempTv.text = getString(R.string.temperature, currentWeather.feelsLikeTemperature.toString())

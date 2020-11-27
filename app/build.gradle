@@ -101,6 +101,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     // android jetpack navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$jetpackNavigation"
     implementation "androidx.navigation:navigation-ui-ktx:$jetpackNavigation"
