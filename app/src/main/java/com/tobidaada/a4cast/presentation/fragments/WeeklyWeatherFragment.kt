@@ -2,6 +2,7 @@ package com.tobidaada.a4cast.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.tobidaada.a4cast.R
 import com.tobidaada.a4cast.presentation.MainViewModel
 import com.tobidaada.a4cast.presentation.adapters.ForecastAdapter
@@ -33,6 +35,7 @@ class WeeklyWeatherFragment : Fragment(R.layout.fragment_weekly_weather) {
     private lateinit var mDescriptionTv: TextView
     private lateinit var mCurrentTemperatureTv: TextView
     private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mIconImageView: ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,6 +49,7 @@ class WeeklyWeatherFragment : Fragment(R.layout.fragment_weekly_weather) {
         mDescriptionTv = view.findViewById(R.id.description)
         mCurrentTemperatureTv = view.findViewById(R.id.currentTemperature)
         mRecyclerView = view.findViewById(R.id.forecastRv)
+        mIconImageView = view.findViewById(R.id.icon)
 
         mRecyclerView.apply {
             adapter = mAdapter
@@ -87,6 +91,10 @@ class WeeklyWeatherFragment : Fragment(R.layout.fragment_weekly_weather) {
                     mDateTv.text = date
                     mDescriptionTv.text = currentWeather.description
                     mCurrentTemperatureTv.text = getString(R.string.temperature, currentWeather.temperature.toString())
+
+
+                    Picasso.get().load("https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png")
+                        .into(mIconImageView)
                 }
             }
         })

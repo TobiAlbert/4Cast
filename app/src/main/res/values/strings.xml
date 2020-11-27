@@ -7,4 +7,14 @@
 
     <string name="wind_speed">%s km/h</string>
     <string name="temperature">%s℃</string>
+    <string name="uv_index_description">"UV Index "</string>
+    <string name="uv_index">UV Index</string>
+    <string name="wind_label">Wind</string>
+    <string name="wind_speed_icon">Wind Speed Icon</string>
+    <string name="humidity_icon">Humidity Icon</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="feels_like_label">Feels Like</string>
+    <string name="temperature_icon_description">Temperature Icon Description</string>
+    <string name="current_weather_icon">Current Weather Icon</string>
+    <string name="forecast_weather_icon">Forecast Weather Icon</string>
 </resources>

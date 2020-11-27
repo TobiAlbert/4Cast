@@ -16,11 +16,9 @@ class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(forecast: Forecast) {
         itemView.apply {
-//            Picasso.get()
-//                .load("https://openweathermap.org/img/wn/1${forecast.icon}@2x.png")
-//                .into(findViewById<ImageView>(R.id.forecastIcon))
-
-            Log.i("ForecastViewHolder", "Icon Url: https://openweathermap.org/img/wn/${forecast.icon}@2x.png")
+            Picasso.get()
+                .load("https://openweathermap.org/img/wn/${forecast.icon}@2x.png")
+                .into(findViewById<ImageView>(R.id.forecastIcon))
 
             findViewById<TextView>(R.id.forecastDayTv).text = formatDateFromUnixTime(forecast.time, SHORT_DAY_PATTERN)
             findViewById<TextView>(R.id.forecastDescription).text = forecast.description

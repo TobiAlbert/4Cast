@@ -15,8 +15,8 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/city"
-            android:layout_width="wrap_content"
+            android:id="@+id/cityName"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textSize="25sp"
@@ -31,8 +31,8 @@
             android:fontFamily="sans-serif-light"
             android:textSize="12sp"
             android:textColor="@color/white"
-            android:layout_below="@+id/city"
-            android:layout_alignStart="@+id/city"
+            android:layout_below="@+id/cityName"
+            android:layout_alignStart="@+id/cityName"
             tools:text="Friday June 30"/>
 
         <TextView
@@ -57,6 +57,14 @@
             android:layout_alignParentBottom="true"
             tools:text="14 C"/>
 
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            android:layout_alignTop="@+id/cityName"
+            android:contentDescription="@string/current_weather_icon"
+            android:layout_alignParentEnd="true"/>
+
     </RelativeLayout>
 
     <LinearLayout
@@ -72,6 +80,7 @@
                 android:id="@+id/ic_temperature"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:contentDescription="@string/temperature_icon_description"
                 app:srcCompat="@drawable/ic_temperature"/>
 
             <TextView
@@ -81,7 +90,7 @@
                 android:layout_toEndOf="@+id/ic_temperature"
                 android:layout_marginStart="16dp"
                 android:textSize="18sp"
-                android:text="Feels Like"
+                android:text="@string/feels_like_label"
                 android:fontFamily="sans-serif-light"
                 tools:text="Feels Like"/>
 
@@ -102,7 +111,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="16dp"
                 android:textSize="18sp"
-                android:text="Humidity"
+                android:text="@string/humidity_label"
                 android:fontFamily="sans-serif-light"
                 tools:text="Humidity"/>
 
@@ -120,6 +129,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_toStartOf="@+id/humidityLabel"
+                android:contentDescription="@string/humidity_icon"
                 app:srcCompat="@drawable/ic_rain"/>
         </RelativeLayout>
         <RelativeLayout
@@ -130,6 +140,7 @@
                 android:id="@+id/ic_wind"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:contentDescription="@string/wind_speed_icon"
                 app:srcCompat="@drawable/ic_wind"/>
 
             <TextView
@@ -139,7 +150,7 @@
                 android:layout_toEndOf="@+id/ic_wind"
                 android:layout_marginStart="16dp"
                 android:textSize="18sp"
-                android:text="Wind"
+                android:text="@string/wind_label"
                 android:fontFamily="sans-serif-light"
                 tools:text="Wind"/>
 
@@ -160,7 +171,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="16dp"
                 android:textSize="18sp"
-                android:text="UV Index"
+                android:text="@string/uv_index"
                 android:fontFamily="sans-serif-light"
                 tools:text="UV Index"/>
 
@@ -178,7 +189,8 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_toStartOf="@+id/uvIndexLabel"
-                app:srcCompat="@drawable/ic_sunlight"/>
+                app:srcCompat="@drawable/ic_sunlight"
+                android:contentDescription="@string/uv_index_description" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

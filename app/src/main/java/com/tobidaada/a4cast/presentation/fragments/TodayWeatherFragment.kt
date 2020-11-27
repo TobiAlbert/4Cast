@@ -2,11 +2,13 @@ package com.tobidaada.a4cast.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.squareup.picasso.Picasso
 import com.tobidaada.a4cast.R
 import com.tobidaada.a4cast.presentation.MainViewModel
 import com.tobidaada.a4cast.presentation.models.CurrentWeather
@@ -28,6 +30,7 @@ class TodayWeatherFragment : Fragment(R.layout.fragment_today_weather) {
     private lateinit var mWindSpeedTv: TextView
     private lateinit var mUvIndexTv: TextView
     private lateinit var mHumidityTv: TextView
+    private lateinit var mIcon: ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +40,7 @@ class TodayWeatherFragment : Fragment(R.layout.fragment_today_weather) {
     }
 
     private fun setupUi(view: View) {
-        mCityTv = view.findViewById(R.id.city)
+        mCityTv = view.findViewById(R.id.cityName)
         mDateTv = view.findViewById(R.id.date)
         mDescriptionTv = view.findViewById(R.id.description)
         mCurrentTemperatureTv = view.findViewById(R.id.currentTemperature)
@@ -45,6 +48,7 @@ class TodayWeatherFragment : Fragment(R.layout.fragment_today_weather) {
         mWindSpeedTv = view.findViewById(R.id.windSpeed)
         mUvIndexTv = view.findViewById(R.id.uvIndex)
         mHumidityTv = view.findViewById(R.id.humidity)
+        mIcon = view.findViewById(R.id.icon)
     }
 
     private fun observeViewModel() {
@@ -67,6 +71,10 @@ class TodayWeatherFragment : Fragment(R.layout.fragment_today_weather) {
                     mWindSpeedTv.text = getString(R.string.wind_speed, currentWeather.windSpeed.toString())
                     mUvIndexTv.text = currentWeather.ultraVioletIndex.toString()
                     mHumidityTv.text = StringBuilder(currentWeather.humidity.toString()).append("%").toString()
+
+                    Picasso.get().load("https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png")
+                        .into(mIcon)
+
                 }
             }
         })

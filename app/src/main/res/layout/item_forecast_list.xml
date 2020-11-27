@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cloud"
+        android:contentDescription="@string/forecast_weather_icon"
         tools:src="@drawable/ic_cloud" />
 
     <TextView

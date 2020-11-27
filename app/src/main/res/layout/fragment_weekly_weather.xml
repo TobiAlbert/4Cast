@@ -14,7 +14,7 @@
        android:padding="16dp">
        <TextView
            android:id="@+id/city"
-           android:layout_width="wrap_content"
+           android:layout_width="150dp"
            android:layout_height="wrap_content"
            android:fontFamily="sans-serif-light"
            android:textSize="25sp"
@@ -53,6 +53,14 @@
            android:textColor="@color/white"
            android:layout_alignParentBottom="true"
            tools:text="14 C"/>
+
+       <ImageView
+           android:id="@+id/icon"
+           android:layout_width="104dp"
+           android:layout_height="104dp"
+           android:layout_alignTop="@+id/city"
+           android:contentDescription="@string/current_weather_icon"
+           android:layout_alignParentEnd="true"/>
    </RelativeLayout>
 
     <FrameLayout
