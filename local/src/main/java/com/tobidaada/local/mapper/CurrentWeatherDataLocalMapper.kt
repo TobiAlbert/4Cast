@@ -18,7 +18,8 @@ class CurrentWeatherDataLocalMapper @Inject constructor(): Mapper<CurrentWeather
             ultraVioletIndex = e.ultraVioletIndex,
             windSpeed = e.windSpeed,
             description = e.description,
-            icon = e.icon
+            icon = e.icon,
+            createdAt = e.createdAt
         )
 
     override fun to(t: CurrentWeatherData): CurrentWeatherLocal =
@@ -33,6 +34,7 @@ class CurrentWeatherDataLocalMapper @Inject constructor(): Mapper<CurrentWeather
             ultraVioletIndex = t.ultraVioletIndex,
             windSpeed = t.windSpeed,
             description = t.description,
-            icon = t.icon
+            icon = t.icon,
+            createdAt = t.createdAt
         )
 }

@@ -38,5 +38,8 @@ data class CurrentWeatherLocal (
     val description: String,
 
     @ColumnInfo(name = "icon")
-    val icon: String
+    val icon: String,
+
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long
 )

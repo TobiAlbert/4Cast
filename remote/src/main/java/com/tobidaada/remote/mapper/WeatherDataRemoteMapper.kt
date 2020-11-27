@@ -19,7 +19,8 @@ class WeatherDataRemoteMapper @Inject constructor(): Mapper<WeatherData, Weather
             ultraVioletIndex = e.current.ultraVioletIndex,
             windSpeed = e.current.windSpeed,
             description = e.current.weather.first().description,
-            icon = e.current.weather.first().icon
+            icon = e.current.weather.first().icon,
+            createdAt = System.currentTimeMillis()
         )
 
         val forecast = e.daily.map {

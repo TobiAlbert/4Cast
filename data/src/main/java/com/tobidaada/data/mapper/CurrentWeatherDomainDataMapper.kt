@@ -30,6 +30,7 @@ class CurrentWeatherDomainDataMapper @Inject constructor(): Mapper<CurrentWeathe
             ultraVioletIndex = t.ultraVioletIndex,
             windSpeed = t.windSpeed,
             description = t.description,
-            icon = t.icon
+            icon = t.icon,
+            createdAt = System.currentTimeMillis()
         )
 }

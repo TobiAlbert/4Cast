@@ -21,7 +21,7 @@ class WeatherRepositoryImpl @Inject constructor(
         val currentWeather = localDataSource.getCurrentWeather()
         if (currentWeather != null) {
             val currentTime = System.currentTimeMillis()
-            val createdAt = currentWeather.dateTime
+            val createdAt = currentWeather.createdAt
             val hasExpired =
                 ((currentTime - createdAt) > CACHE_EXPIRATION) || !isSameDay(currentTime, createdAt)
             if (!hasExpired) {

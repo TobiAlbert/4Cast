@@ -10,5 +10,6 @@ data class CurrentWeatherData (
     val ultraVioletIndex: Float,
     val windSpeed: Float,
     val description: String,
-    val icon: String
+    val icon: String,
+    val createdAt: Long
 )
