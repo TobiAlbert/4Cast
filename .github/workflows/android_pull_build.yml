@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app
-          path: app/build/outputs/apk/release/app-debug.apk
+          path: app/build/outputs/apk/debug/**.apk
 
       - name: Clean up Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
