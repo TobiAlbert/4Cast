@@ -10,20 +10,15 @@ on:
 
 # Define tasks that would be run for each action
 jobs:
-  build:
-    # Use provided github hosted runner
-    runs-on: ubuntu-18.04
-
-    # Define steps
+  test_job:
+    name: Test Job
+    runs-on: ubuntu-18.04 # Use provided github hosted runner
+    continue-on-error: true
     steps:
-      # Checkout the code for the specific branch
-      - uses: actions/checkout@v2 # this uses an external action
-      - name: Setup JDK for Android Build
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
+      - name: Checkout
+        uses: actions/checkout@v2 # this uses an external action
 
-      - name: Cache Gradle Dependencies
+      - name: Restore Cache
         uses: actions/cache@v2
         with:
           path: |
@@ -33,8 +28,33 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Run Tests
-        run: ./gradlew test # run takes in a command line input
+      - name: Run Debug Tests
+        run: ./gradlew testDebugUnitTest --continue # run takes in a command line input
+
+      - name: Upload Test Reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: '**/build/reports/tests/'
+
+  assemble_job:
+    name: Assemble APK
+    runs-on: ubuntu-18.04
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Restore Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Create a debug APK
         run: ./gradlew assembleDebug
@@ -51,6 +71,26 @@ jobs:
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
+
+  notification_job:
+    needs: [test_job, assemble_job]
+    name: Notify Build Status
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: technote-space/workflow-conclusion-action@v1
+    - uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ env.WORKFLOW_CONCLUSION }}
+        fields: commit,ref,workflow,eventName
+        author_name: ${{ github.actor }}
+        icon_emoji: ':construction_worker:'
+        username: 'PR Bot'
+        text: 'Workflow conclusion:  ${{ env.WORKFLOW_CONCLUSION }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+
 
 
 
