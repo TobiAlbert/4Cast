@@ -39,7 +39,7 @@ jobs:
           path: '**/build/reports/tests/'
 
   assemble_job:
-    - name: Assemble APK
+      name: Assemble APK
       runs-on: ubuntu-18.04
       continue-on-error: true
     steps:
