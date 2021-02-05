@@ -77,8 +77,8 @@ jobs:
     name: Notify Build Status
     runs-on: ubuntu-18.04
     steps:
-      - uses: technote-space/workflow-conclusion-action@v1
-      - uses: 8398a7/action-slack@v3
+    - uses: technote-space/workflow-conclusion-action@v1
+    - uses: 8398a7/action-slack@v3
       with:
         status: ${{ env.WORKFLOW_CONCLUSION }}
         fields: commit,ref,workflow,eventName
