@@ -1,0 +1,57 @@
+# Name workflow
+name: Build Pull Request
+
+# Define action that would trigger workflow
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+
+# Define tasks that would be run for each action
+jobs:
+  build:
+    # Use provided github hosted runner
+    runs-on: ubuntu-18.04
+
+    # Define steps
+    steps:
+      # Checkout the code for the specific branch
+      - uses: actions/checkout@v2 # this uses an external action
+      - name: Setup JDK for Android Build
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Run Tests
+        run: ./gradlew test # run takes in a command line input
+
+      - name: Create a debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app
+          path: app/build/outputs/apk/release/app-debug.apk
+
+      - name: Clean up Gradle Cache
+        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
+        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
+
+
+
+
