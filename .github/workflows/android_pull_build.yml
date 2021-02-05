@@ -52,6 +52,20 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
+      - uses: technote-space/workflow-conclusion-action@v1
+      - uses: 8398a6/action-slack@v3
+        with:
+          status: ${{ env.WORKFLOW_CONCLUSION }}
+          fields: commit,ref,workflow,eventName
+          author: ${{ github.actor }}
+          icon_emoji: ':robot_face:'
+          username: 'PR Bot'
+          text: 'Workflow conclusion: ' ${{ env.WORKFLOW_CONCLUSTION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+
 
 
 
