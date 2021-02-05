@@ -53,7 +53,7 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
       - uses: technote-space/workflow-conclusion-action@v1
-      - uses: 8398a6/action-slack@v3
+      - uses: 8398a7/action-slack@v3
         with:
           status: ${{ env.WORKFLOW_CONCLUSION }}
           fields: commit,ref,workflow,eventName
