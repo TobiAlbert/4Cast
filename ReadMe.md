@@ -1,3 +1,5 @@
+![Build Pull Request](https://github.com/TobiAlbert/4Cast/workflows/Build%20Pull%20Request/badge.svg)
+
 ## About
 Get information about the weather using OpenWeatherMap's API.
 
