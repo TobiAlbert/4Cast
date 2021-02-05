@@ -60,7 +60,7 @@ jobs:
           author: ${{ github.actor }}
           icon_emoji: ':robot_face:'
           username: 'PR Bot'
-          text: 'Workflow conclusion: ' ${{ env.WORKFLOW_CONCLUSTION }}
+          text: 'Workflow conclusion:  ${{ env.WORKFLOW_CONCLUSION }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
