@@ -39,9 +39,9 @@ jobs:
           path: '**/build/reports/tests/'
 
   assemble_job:
-      name: Assemble APK
-      runs-on: ubuntu-18.04
-      continue-on-error: true
+    name: Assemble APK
+    runs-on: ubuntu-18.04
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
