@@ -82,7 +82,7 @@ jobs:
       with:
         status: ${{ env.WORKFLOW_CONCLUSION }}
         fields: commit,ref,workflow,eventName
-        author: ${{ github.actor }}
+        author_name: ${{ github.actor }}
         icon_emoji: ':construction_worker:'
         username: 'PR Bot'
         text: 'Workflow conclusion:  ${{ env.WORKFLOW_CONCLUSION }}'
