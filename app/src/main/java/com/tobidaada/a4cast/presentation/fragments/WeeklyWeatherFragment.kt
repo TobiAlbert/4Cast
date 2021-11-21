@@ -1,7 +1,9 @@
 package com.tobidaada.a4cast.presentation.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.tobidaada.a4cast.R
+import com.tobidaada.a4cast.databinding.FragmentWeeklyWeatherBinding
 import com.tobidaada.a4cast.presentation.MainViewModel
 import com.tobidaada.a4cast.presentation.adapters.ForecastAdapter
 import com.tobidaada.a4cast.presentation.models.CurrentWeather
@@ -27,15 +30,19 @@ import javax.inject.Inject
 class WeeklyWeatherFragment : Fragment(R.layout.fragment_weekly_weather) {
 
     @Inject lateinit var mAdapter: ForecastAdapter
-
     private val mainViewModel: MainViewModel by viewModels()
+    private var _binding: FragmentWeeklyWeatherBinding? = null
+    private val binding: FragmentWeeklyWeatherBinding
+        get() = _binding!!
 
-    private lateinit var mCityTv: TextView
-    private lateinit var mDateTv: TextView
-    private lateinit var mDescriptionTv: TextView
-    private lateinit var mCurrentTemperatureTv: TextView
-    private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mIconImageView: ImageView
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentWeeklyWeatherBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,14 +51,7 @@ class WeeklyWeatherFragment : Fragment(R.layout.fragment_weekly_weather) {
     }
 
     private fun setupUi(view: View) {
-        mCityTv = view.findViewById(R.id.city)
-        mDateTv = view.findViewById(R.id.date)
-        mDescriptionTv = view.findViewById(R.id.description)
-        mCurrentTemperatureTv = view.findViewById(R.id.currentTemperature)
-        mRecyclerView = view.findViewById(R.id.forecastRv)
-        mIconImageView = view.findViewById(R.id.icon)
-
-        mRecyclerView.apply {
+        binding.forecastRv.apply {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
@@ -87,16 +87,21 @@ class WeeklyWeatherFragment : Fragment(R.layout.fragment_weekly_weather) {
 
                     // date
                     val date = formatDateFromUnixTime(currentWeather.time + currentWeather.timezoneOffset.toLong())
-                    mCityTv.text = getCityFromTimezone(currentWeather.timezone)
-                    mDateTv.text = date
-                    mDescriptionTv.text = currentWeather.description
-                    mCurrentTemperatureTv.text = getString(R.string.temperature, currentWeather.temperature.toString())
+                    binding.city.text = getCityFromTimezone(currentWeather.timezone)
+                    binding.date.text = date
+                    binding.description.text = currentWeather.description
+                    binding.currentTemperature.text = getString(R.string.temperature, currentWeather.temperature.toString())
 
 
                     Picasso.get().load("https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png")
-                        .into(mIconImageView)
+                        .into(binding.icon)
                 }
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
